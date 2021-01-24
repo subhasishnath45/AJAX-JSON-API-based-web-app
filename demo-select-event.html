@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <select id="s1" onchange="myFunc()">
+            <option value="">Choose an option</option>
+            <option value="Audi">Audi</option>
+            <option value="Volvo">Volvo</option>
+            <option value="Tata">Tata</option>
+            <option value="BMW">BMW</option>
+        </select>
+        <p id="p1"></p>
+        <script>
+            function myFunc(){
+                var x = document.getElementById("s1").value;
+                document.getElementById("p1").innerHTML = `You selected: ${x}`;
+            }
+        </script>
+    </body>
+</html>

@@ -21,10 +21,35 @@ start();
 function createBreedList(breedList){
     const breedElem = document.getElementById("breed");
 
-    breedElem.innerHTML = `<select>
+    breedElem.innerHTML = `<select onchange="loadByBreed(this.value)">
                 <option>Choose a dog breed</option>
                 ${Object.keys(breedList).map(function(breed){
                     return `<option>${breed}</option>`;
                 }).join('')}
             </select>`;
 }
+
+// following function will load the images as we choose a breed option from dropdown
+async function loadByBreed(breed){
+    if(breed != 'Choose a dog breed'){
+        // alert(breed);
+        const response = await fetch(`https://dog.ceo/api/breed/${breed}/images`);
+        const data = await response.json();
+        // console.log(data.message);
+        showImages(data.message);
+    }
+}
+
+function showImages(images){
+
+    if(images.length > 0){
+        const slideshowElement = document.getElementById('slideshow');
+        slideshowElement.innerHTML = `<ul class="dogimglist">
+            ${Object.keys(images).map(function(image){
+                return `<li><img src="${images[image]}"/></li>`;
+            }).join('')}
+        </ul>`;
+    }
+
+}
+
